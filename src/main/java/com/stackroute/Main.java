@@ -18,19 +18,20 @@ import java.beans.beancontext.BeanContext;
 public class Main {
     public static void main(String[] args) {
 
-        BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
 
-        Movie movie = (Movie) factory.getBean("movie");
-        System.out.println(movie.getActor().toString());
 
-        BeanDefinitionRegistry registry = new DefaultListableBeanFactory();
-        BeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);
-        reader.loadBeanDefinitions(new ClassPathResource("beans.xml"));
-        Movie movie1 = (Movie) ((DefaultListableBeanFactory) registry).getBean("movie");
-        System.out.println(movie1.getActor().toString());
 
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        Movie movie2 = context.getBean(Movie.class);
+
+        Movie movie1 = (Movie) context.getBean("movie1");
+        System.out.println(movie1.getActor());
+
+        Movie movie2 = (Movie) context.getBean("movie2");
         System.out.println(movie2.getActor());
+
+        Movie movie3 = (Movie) context.getBean("movie3");
+        System.out.println(movie3.getActor());
+
+        System.out.println(movie1==movie2);
     }
 }
