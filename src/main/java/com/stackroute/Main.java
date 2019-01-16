@@ -1,27 +1,15 @@
-package com.stackroute;
-
-import com.stackroute.domain.Actor;
-import com.stackroute.domain.Movie;
+import com.stackroute.demo.BeanLifecycleDemoBean;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionReader;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-
-import java.beans.beancontext.BeanContext;
 
 public class Main {
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        Movie movie = (Movie) context.getBean("movie");
-        System.out.println(movie.getActor());
+    public static void main(String [] args){
 
-        Movie movie1 = (Movie) context.getBean("movie1");
-        System.out.println(movie1.getActor());
+        ConfigurableApplicationContext context =
+                new ClassPathXmlApplicationContext(new String[] {"beans.xml"});
+        context.close();
     }
 }
